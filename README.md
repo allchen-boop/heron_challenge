@@ -2,6 +2,6 @@
 
 file overview:
 - function.py will hold the implementation to the challenge
-- brainstorm.ipynb will be where I brainstorm (easier for me to write track my ideas and helps if I need to visualize anything)
+- brainstorm.ipynb will be where I brainstorm (easier for me to track and visualize my ideas)
 - tests folder
-- to run on local env, download dependencies by installing requirements.txt
+- download dependencies on local env by installing requirements.txt
