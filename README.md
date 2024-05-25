@@ -33,6 +33,7 @@ didn't get to:
 1. write more tests
 2. get imports in requirements.txt
 3. figure out a threshold for time delta based on deviation vals
+4. get rid of print
 
 basic outline (if notebook is hard to follow):
 1. identify possible recurring based on amount -- operate under assumption that any single value can not be a recurring transaction
@@ -42,14 +43,16 @@ basic outline (if notebook is hard to follow):
 5. mark time delta as 0 (when consecutive transactions occur at around the same time date weekly, monthly, yearly)
 6. we are left with a list of the transactions that are flagged as recurring
 
-if more time:
+if more time based on what i have now (besides looking into ml, nlp algos):
 give score for each feature. rough example:
 1. if there are any outlier amounts give it zero points.
 2. if similarity score is 1 give it 10 points. if it is 0.6 give it 5. etc...
 3. if time deltas are exactly the same wihtin a cluster give it 10 points, etc...
 4. calculate ending points and classify if definately recurring, maybe, or most likely not
 
-we could also group by desc first and then investigate amounts within each grouping -- i just got rid of outlying amounts first for the sake of time. also, im assuming that amounts are the least variable to differences in recurring payments (a recurring payment should not have wildy diff amounts each month?)
+think more about ordering of classifications:
+1. we could group by desc first and then investigate amounts within each grouping -- i just got rid of outlying amounts first for the sake of time. also, im assuming that amounts are the least variable to differences in recurring payments (a recurring payment should not have wildy diff amounts each month?)
+2. again, this goes to how the client wants to define recurring based on how their transaction data is
 
 
 1. How would you measure the accuracy of your approach? -- feedback so customers can confirm or reject those flagged as recurring
