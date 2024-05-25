@@ -40,7 +40,7 @@ basic outline (if notebook is hard to follow):
 2. eliminate transactions of unique amount
 3. group descriptions based on similarity
 4. idenitfy grouping ranges to calculate time delta
-5. mark time delta as 0 (when consecutive transactions occur at around the same time date weekly, monthly, yearly)
+5. mark time delta as 0 (when consecutive transactions have the same number of differenct days in between within 5 days)
 6. we are left with a list of the transactions that are flagged as recurring
 
 if more time based on what i have now (besides looking into ml, nlp algos):
