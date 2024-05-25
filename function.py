@@ -1,11 +1,11 @@
 # ---------------------------------- HERON DATA DEPLOYMENT ENG CHALLENGE ---------------------------------- #
-
 import json
 import pandas as pd
 import numpy as np
 import datetime as dt
 import re
 from difflib import SequenceMatcher
+
 
 def read_transactions(filename):
     with open(filename) as f:
@@ -15,12 +15,15 @@ def read_transactions(filename):
 
 def to_df(transactions):
     df = pd.DataFrame(transactions)
+    df['date'] = pd.to_datetime(df['date'])
 
     return df
 
 
 def amt_occurences(df):
     df['occurrences'] = df.duplicated('amount', keep=False)
+    # drop single payments
+    df = df[df['occurrences'] == True]
     df = df.drop(columns=['occurrences'])
     return df
 
@@ -54,6 +57,7 @@ def similarity_matrix(df):
             similarity_score = similarity(a, b)
             row.append(similarity_score)
         similarity_matrix.append(row)
+    
     return similarity_matrix
 
 
@@ -98,7 +102,7 @@ def check_dates_within_range(df, start_index, end_index):
     
 def recurring_status(df, cluster_sizes):
     curr = 0
-    for size in cluster_ranges:
+    for size in cluster_sizes:
         start_index = curr
         end_index = curr + size - 1
         check_dates_within_range(df, start_index, end_index)
@@ -116,10 +120,10 @@ def identify_recurring_transactions(transactions_list):
     normalized_desc = normalize_desc(possible_recurring)
 
     # 4. matrix of all desc similarity scores
-    similarity_matrix = similarity_matrix(normalized_desc)
+    matrix = similarity_matrix(normalized_desc)
 
     # 5. get clusters ranges of transactions based on desc similarity
-    cluster_ranges = similarity_clusters(similarity_matrix)
+    cluster_ranges = similarity_clusters(matrix)
 
     # 6. get the date deltas for each cluster in days
     date_delta_df = date_diff(cluster_ranges, normalized_desc)
@@ -127,11 +131,14 @@ def identify_recurring_transactions(transactions_list):
     # 7. make sure the deltas are within threshold
     final_df = recurring_status(date_delta_df, cluster_ranges)
 
+    # list of recurring transactions
+    return final_df['description'].tolist()
+
     
 
 
 def main():
-    identify_recurring_transactions(read_transactions('tests/example.json'))
+    print(identify_recurring_transactions(read_transactions('tests/example.json')))
 
 
 if __name__ == "__main__":
