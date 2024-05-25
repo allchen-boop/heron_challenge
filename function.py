@@ -1,5 +1,12 @@
 # ---------------------------------- HERON DATA DEPLOYMENT ENG CHALLENGE ---------------------------------- #
 
+import json
+import pandas as pd
+import numpy as np
+import datetime as dt
+import re
+from difflib import SequenceMatcher
+
 def read_transactions(filename):
     with open(filename) as f:
         raw_data = json.load(f)
