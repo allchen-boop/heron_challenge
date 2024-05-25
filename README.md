@@ -17,3 +17,12 @@ what happens if we cancel a subscription and repurchase it again -- how do custo
 what if a reccuring payment is done in two parts 
 
 how much they want to weight diff features
+
+4. (bonus) Please discuss the following:
+    1. How would you measure the accuracy of your approach? feedback so customers can confrim or reject those flagged as recurring
+    2. How would you know whether solving this problem made a material impact on customers? how often they use recurring feature
+    3. How would you deploy your solution? cicd for testing and deployment. put in container?
+    4. What other approaches would you investigate if you had more time? customers to define their own rules for identifying recurring transactions. ml. time series?
+
+
+notes and outline in brainstrom notebook
