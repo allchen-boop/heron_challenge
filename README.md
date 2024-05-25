@@ -49,7 +49,7 @@ give score for each feature. rough example:
 3. if time deltas are exactly the same wihtin a cluster give it 10 points, etc...
 4. calculate ending points and classify if definately recurring, maybe, or most likely not
 
-we could also group by desc first and then investigate amounts within each grouping -- i just got rid of outlying amounts first for the sake of time. also, im assuming that amounts are the least variable to differences in recurring payments (a recurring payment should have widly diff amounts each month?)
+we could also group by desc first and then investigate amounts within each grouping -- i just got rid of outlying amounts first for the sake of time. also, im assuming that amounts are the least variable to differences in recurring payments (a recurring payment should not have wildy diff amounts each month?)
 
 
 1. How would you measure the accuracy of your approach? -- feedback so customers can confirm or reject those flagged as recurring
